@@ -1,0 +1,146 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <cmath>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string get_name;
+  cout <<"Please Enter the name you want to Encrypt  :  ";
+  cin>>get_name;
+  int number_inc;
+  cout <<"Please Enter the number  by which you want to increment each alphabet  :  ";
+  cin>> number_inc;
+    string fresh_abc[]={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+   
+  int times = ceil(number_inc/26);
+   times=times+5;
+
+  int size_ary= times*26;
+  string final_abc[size_ary];
+  int ln_frsh_abc=sizeof(fresh_abc)/sizeof(fresh_abc[0]);
+ // cout<< ln_frsh_abc<< endl;
+  
+//------------------------------------start to fill the variable for comparison
+ int indxfrfinal_abc=0;
+  for (int i=1; i<=times;i++)
+  {
+      for(int j=0;j<ln_frsh_abc;j++)
+      {
+          final_abc[indxfrfinal_abc]=fresh_abc[j];
+          indxfrfinal_abc++;
+          }
+      
+   }
+   //-----------------------------------------------------------
+  // now will do comparison 
+  int ln_get_name= get_name.length();
+ //cout<< ln_get_name<<endl;
+  string ar_word_comp[ln_get_name];
+//  ar_word_comp[0]=get_name.at(0);
+ //cout<< ar_word_comp[0];
+ for(int w=0;w<ln_get_name;w++)
+ {    ar_word_comp[w]=get_name.at(w);
+       
+ }
+     //--------------------get index of alphabets from final_abc
+     int get_index[ln_get_name];
+     int position=0;
+     for(int w=0;w<ln_get_name;w++)
+ {   
+   for (int i=0 ; i<26;i++)
+   {
+    if(ar_word_comp[w]==final_abc[i])
+    {get_index[position]=i;
+    position++;} 
+   }
+ }
+     for(int w=0;w<ln_get_name;w++)
+ {   get_index[w]=get_index[w]+number_inc;
+       
+ }
+     string compressed_var[ln_get_name];
+     for(int w=0;w<ln_get_name;w++)
+    { string s;
+     for(int j=0;j<size_ary;j++)
+      {
+          
+     s=final_abc[get_index[w]];
+       
+     }
+     compressed_var[w]=s;
+     
+   }
+cout<< "Your encrypted string is :  " ;
+for(int j=0;j<ln_get_name;j++)
+      {
+          
+    cout<<compressed_var[j];
+       
+     }
+     cout<<endl;
+     // now for decryption-======================--------------------------------=-=--=-=-=-==--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=--=
+     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222
+     char inp;
+     cout<< "Do You Want To Decrypt your code?(y or n)  : ";
+     cin>>inp;
+     if (inp=='y')
+     {
+     
+     string get_namefrdecr;
+  cout <<"Please Enter the string  you want to Decrypt  :  ";
+  cin>>get_namefrdecr;
+     
+     int ln_get_namedecr= get_namefrdecr.length();
+ //cout<< ln_get_name<<endl;
+  string ar_word_compdecr[ln_get_namedecr];
+//  ar_word_comp[0]=get_name.at(0);
+ //cout<< ar_word_comp[0];
+ for(int w=0;w<ln_get_namedecr;w++)
+ {    ar_word_compdecr[w]=get_namefrdecr.at(w);
+       
+ }
+     //--------------------get index of alphabets from final_abc
+     int get_indexdecr[ln_get_namedecr];
+     int positiondecr=0;
+     for(int w=0;w<ln_get_namedecr;w++)
+ {   
+   for (int i=0 ; i<26;i++)
+   {
+    if(ar_word_compdecr[w]==final_abc[i])
+    {get_indexdecr[positiondecr]=i;
+    positiondecr++;} 
+   }
+ }
+     for(int w=0;w<ln_get_namedecr;w++)
+ {   get_indexdecr[w]=get_indexdecr[w]+26-number_inc;
+       
+ }
+     string compressed_vardecr[ln_get_namedecr];
+     for(int w=0;w<ln_get_namedecr;w++)
+    { string sdecr;
+     for(int j=0;j<size_ary;j++)
+      {
+          
+     sdecr=final_abc[get_indexdecr[w]];
+       
+     }
+     compressed_vardecr[w]=sdecr;
+     
+   }
+       cout<< "Your Decrypted string is :  " ;
+for(int j=0;j<ln_get_namedecr;j++)
+      {
+          
+    cout<<compressed_vardecr[j];
+       
+     }
+     }
+     else
+     {
+         cout<<"Good Bye!!";
+         }
+return 0;
+
+}
